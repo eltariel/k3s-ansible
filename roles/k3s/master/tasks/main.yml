@@ -59,6 +59,12 @@
     owner: "{{ ansible_user }}"
     mode: "u=rw,g=,o="
 
+- name: Copy config file to local
+  ansible.builtin.fetch:
+    owner: "{{ ansible_user }}"
+    src: ~{{ ansible_user }}/.kube/config
+    dest: k3s-cfg/
+
 - name: Replace https://localhost:6443 by https://master-ip:6443
   command: >-
     k3s kubectl config set-cluster default

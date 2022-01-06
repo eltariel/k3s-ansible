@@ -1,4 +1,16 @@
 ---
+- name: Update system
+  apt:
+    update_cache: yes
+    upgrade: full
+  changed_when: false
+
+- name: Install needed packages
+  apt:
+    pkg:
+      - iptables
+  changed_when: false
+
 - name: Activating cgroup support
   lineinfile:
     path: /boot/cmdline.txt
